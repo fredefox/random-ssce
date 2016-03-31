@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div/>
+<script>
+(function() {
+    logEvents();
+    function logEvents() {
+        /** As can be seen from this example `ready` is not a standard event */
+        var on = (ev, f) => window.addEventListener(ev, f),
+            logIt = (ev) => console.info(ev.type),
+            events = ["DOMContentLoaded", "ready", "load", "change", "loadend"
+                , "loadstart", "offline", "online", "readystatechange"
+                , "unload"];
+        events.forEach((ev) => on(ev, logIt));
+    }
+})();
+</script>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+</body>
+</html>

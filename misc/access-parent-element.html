@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script id="wrong">
+window.getCurrentScript = (function() {
+    if (document.currentScript === undefined) {
+        return function() {
+            var scripts = document.getElementsByTagName("script");
+            return scripts[scripts.length - 1];
+        };
+    }
+    return function() {
+        return document.currentScript;
+    };
+})();
+</script>
+<script id="correct">
+var s = getCurrentScript();
+console.info(s.id);
+</script>
+</body>
+</html>

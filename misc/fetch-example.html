@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script async>
+    (function() {
+        var url = "https://fetch.spec.whatwg.org/";
+        fetch(url)
+            .then((resp) => resp.arrayBuffer())
+            .then(what)
+            .then((txt) => document.body.innerHTML = txt);
+        function what(buff) {
+            debugger;
+        }
+    })();
+    </script>
+</head>
+<body>
+</body>
+</html>

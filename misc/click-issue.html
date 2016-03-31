@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+.box {
+    min-height: 6em;
+    min-width: 6em;
+    border: solid 1px black;
+    padding: .5em;
+    margin: .5em;
+}
+    </style>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    "use strict";
+    var target = null;
+    var setTarget = function(event) {
+        console.info("setTarget");
+        target = event.currentTarget;
+    };
+    var moveIt = function(event) {
+        if(!(target instanceof HTMLElement)) return;
+        target.appendChild(event.target);
+    };
+    [].forEach.call(document.querySelectorAll("[x-drag-target]"), function(d) {
+        d.ondragover = function allowDrop(event) { event.preventDefault(); };
+        d.ondrop = setTarget;
+    });
+    [].forEach.call(document.querySelectorAll("[draggable=true]"), function(d) {
+        d.ondragend = moveIt;
+        [].forEach.call(d.querySelectorAll("input"), function(chld) {
+            chld.onclick = function() {
+                console.info("disable dragging");
+                d.draggable = false;
+                chld.focus();
+                setTimeout(function() {
+                    console.info("enable dragging");
+                    d.draggable = true;
+                }, 100);
+            }
+        });
+    });
+    /*document.querySelector("[draggable=true] input").onclick = function(ev) {
+        console.info(ev.target);
+        ev.stopPropagation();
+    };*/
+    var e = document.createElement("_"),
+        c = document.createElement("_");
+    e.draggable = true;
+    e.appendChild(c)
+    c.focus();
+    var supported = c.hasFocus();
+    console.info("supported %s", supported);
+});
+    </script>
+</head>
+<body>
+<div x-drag-target="true" class="box">
+    <div draggable="true">
+        <label>Unclickable input-field</label>
+        <input draggable="false" name="unclickable" />
+    </div>
+</div>
+<div x-drag-target="true" class="box"></div>
+</body>
+</html>

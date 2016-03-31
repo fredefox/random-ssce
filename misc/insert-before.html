@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script defer src="webcomponents-polyfill-regardless.js"></script>
+    <!--<script defer src="webcomponentsjs/webcomponents.js"></script>-->
+    <script defer>
+(function() {
+    "use strict";
+    document.addEventListener("DOMContentLoaded", main);
+    function main() {
+        var m = document.querySelector("footer"),
+            xs = ["Den Sorte Skole", "Fat Freddies Drop", "Nicolas Jaar"];
+        test(createNodes(xs), m);
+    }
+    function test(newNodes, referenceNode) {
+        var parent = referenceNode.parentElement,
+            tries = 0,
+            l = newNodes.length;
+        while(newNodes.length > 0) {
+            // This is so strange: After the call to `insertNode(newNode, referenceNode)`
+            // `newNodes` will no longer contain `newNode`. What gives?
+            parent.insertBefore(newNodes[0], referenceNode);
+            if(tries++ > l) {
+                console.error("`insertBefore` doesn't work.");
+                break;
+            }
+        }
+    }
+    /** @return {NodeList} */
+    function createNodes(arr) {
+        // This is a stub for SPClientRenderer.RenderCore(renderCtx)
+        var ps = arr.map(createNode),
+            dummy = document.createElement("dummy");
+        ps.forEach(function(p) {
+            dummy.appendChild(p);
+        });
+        return dummy.childNodes;
+    }
+    /** @return {HTMLParagraphElement} */
+    function createNode(text) {
+        var p = document.createElement("p");
+        p.textContent = text;
+        return p;
+    }
+})();
+    </script>
+</head>
+<body>
+    <footer><p>With &#9829; <tt>fredefox</tt></p></footer>
+</body>
+</html>

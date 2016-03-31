@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The power of flexible boxes</title>
+    <style>
+body {
+    background-color: lightgrey;
+    word-spacing: 0.1em;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex-item {
+    flex-grow: 1;
+}
+.box {
+    max-width: 80ch;
+    min-height: 3ch;
+    margin: 1ch;
+    padding: 2ch;
+}
+.orange {
+    background-color: goldenrod;
+}
+    </style>
+</head>
+<body>
+    <article>
+        <hgroup class="box">
+            <h1>The power of flexible boxes</h1>
+            <p>
+                Here is an example of how to use flexible boxes for laying out
+                text-columns with readable widths. See
+                <a href="https://goo.gl/hm67mB">Mozilla Developer Network</a>
+                for reference.
+            </p>
+        </hgroup>
+        <div class="flex-container">
+            <div class="flex-item orange box">
+                <pre>Eighty characters. This is eighty characters. Right here is eighty characters...</pre>
+            </div>
+            <div class="flex-item orange box">
+                <p>Eighty characters. This is eighty characters. Right here is eighty characters...</p>
+            </div>
+            <div class="flex-item orange box"></div>
+        </div>
+    </article>
+</body>
+</body>
+</html>

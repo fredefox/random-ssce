@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>divs as table</title>
+    <style>
+.table {
+    display: table;
+}
+.thead {
+display: table-header-group;
+}
+.tr {
+display: table-row;
+}
+.th {
+display: table-cell;
+}
+.tbody {
+display: table-row-group;
+}
+.td {
+display: table-cell;
+}
+    </style>
+</head>
+<body>
+    <div class="table">
+        <div class="thead">
+            <div class="tr">
+                <div class="th">header-1</div>
+                <div class="th">header-2</div>
+            </div>
+        </div>
+        <div class="tbody">
+            <div class="tr">
+                <div class="td">data-1</div>
+                <div class="td">data-2</div>
+            </div>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>header-1</th>
+                <th>header-2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>data-1</td>
+                <td>data-2</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>header-1</th>
+                <th>header-2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div class="tr">
+                <div class="td">data-1</div>
+                <div class="td">data-2</div>
+            </div>
+        </tbody>
+    </table>
+</body>
+</html>

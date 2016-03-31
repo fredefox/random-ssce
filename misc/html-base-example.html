@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="//enable-cors.org/"/>
+    <script async>
+fetch("index.html")
+    .then(r => r.text)
+    .then(t => document.body.innerHTML = t);
+    </script>
+</head>
+</html>

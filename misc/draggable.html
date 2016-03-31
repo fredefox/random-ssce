@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<!-- Load these script in any order -->
+<body>
+    <p draggable="true">This element is draggable</p>
+</body>
+<script src="/_layouts/15/caseapp/js/jquery.js"></script>
+<script>
+(function($) {
+    $(function() {
+        $("[draggable]").on("dragover", function() {
+            console.info("yolo");
+        })
+    });
+})(ccm$);
+</script>
+</body>
+</html>

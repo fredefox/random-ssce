@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+div {
+    /* We can maybe use flex-boxes to take up a certain part of the page. */
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tan {
+    background-color: tan;
+}
+.lightblue {
+    background-color: lightblue;
+}
+  </style>
+</head>
+<body>
+<div draggable="true" class="tan">
+    <pre class="output">tan</pre>
+</div>
+<div draggable="true" class="lightblue">
+    <pre class="output">lightblue</pre>
+</div>
+<script>
+"use strict";
+(function() {
+    var target = null;
+    var setTarget = function(event) {
+        target = event.target;
+    };
+    var showIt = function(event) {
+        var s = event.target.querySelector(".output"),
+            t = target.querySelector(".output");
+        s.innerText = "source";
+        t.innerText = "target";
+    };
+    [].forEach.call(document.querySelectorAll("[draggable]"), function(d) {
+        d.ondragover = function allowDrop(event) {
+            event.preventDefault();
+        };
+        d.ondrop = setTarget;
+        d.ondragend = showIt;
+    });
+})();
+</script>
+</html>
