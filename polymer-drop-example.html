@@ -1,0 +1,47 @@
+<!--
+    This example *must* be run with a web-server. The reason for this is that
+    it's in violation with the same-origin policy to serve files from the file-
+    system - however weird that sounds.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="webcomponentsjs/webcomponents.js" defer></script>
+        <link rel="import" href="polymer/polymer.html"/>
+        <dom-module is="my-element">
+            <style>
+div {
+    /* We can maybe use flex-boxes to take up a certain part of the page. */
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tan {
+    background-color: tan;
+}
+.lightblue {
+    background-color: lightblue;
+}
+            </style>
+            <template>
+                <div draggable="true" class="tan">
+                    <pre>tan</pre>
+                </div>
+                <div draggable="true" class="lightblue">
+                    <pre>lightblue</pre>
+                </div>
+            </template>
+        </dom-module>
+        <script defer>
+(function(Polymer) {
+    var MyElement = Polymer.Class({
+        is: 'my-element'
+    });
+    document.registerElement("my-element", MyElement);
+    var instance = new MyElement();
+    document.body.appendChild(instance);
+})(window.Polymer);
+        </script>
+    </head>
+</html>

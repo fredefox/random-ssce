@@ -1,0 +1,29 @@
+<dom-module is="employee-table" attributes="employees">
+    <template>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template is="dom-repeat" items='{{employees}}'>
+                    <employee-tr employee='{{item}}'></employee-tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+</dom-module>
+
+<dom-module is="employee-tr" attributes="employee">
+    <template>
+        <tr>
+            <td>{{employee.name}}</td>
+            <td>{{employee.title}}</td>
+        </tr>
+    </template>
+</dom-module>
+
+<script>
+</script>

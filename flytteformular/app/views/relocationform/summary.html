@@ -1,0 +1,54 @@
+<!-- Could we maybe somehow use a template for these sub-pages? -->
+<section class="center">
+    <h2>Bekræftelse af flytning</h2>
+    <p>Bekræft din flytteindmeldelse</p>
+    <p>
+        <h3>Personoplysninger:</h3>
+        <p>{{user.name}}</p>
+        <p>{{user.cpr}}</p>
+        <p>{{user.phone}}</p>
+        <p>{{user.email}}</p>
+    </p>
+    <p>
+        <h3>Installationsadresse:</h3>
+        <p>{{user.address}}</p>
+    </p>
+    <p>
+        <h3>Flyttedato:</h3>
+        <p>{{relocation.date}}</p>
+    </p>
+    <p>
+        <h3>Måleraflæsning:</h3>
+        <p>{{relocation.meter}}</p>
+    </p>
+    <p>
+        <h3>Opgørelsen sendes til:</h3>
+        <p>{{user.email}}</p>
+    </p>
+    <p>
+        <h3>El produkt:</h3>
+        <p>{{product.name}}</p>
+    </p>
+    <p>
+        <h3>Pris</h3>
+        <table>
+            <tr>
+                <td>ForeningsEl</td><td>559,57 kr</td>
+            </tr>
+            <tr>
+                <td>Abonnement</td><td>12,50 kr</td>
+            </tr>
+            <tr>
+                <td>Samlet</td><td>{{product.price}}</td>
+            </tr>
+        </table>
+    </tabl>
+    <div style="float: left;">
+        <!-- TODO: Where should this go? -->
+        <button class="muted" ui-sref="form.product">Ret oplysninger</button>
+    </div>
+    <div style="float: right;">
+        <button type="submit" class="primary">Send indmeldelse</button>
+    </div>
+</section>
+<aside></aside>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script defer src="/bower_components/angular/angular.js"></script>
+    <script defer src="energinord.js"></script>
+    <script defer src="autocomplete.js"></script>
+    <script defer src="order.js"></script>
+</head>
+<body ng-app="energinord">
+    <main ng-controller="order">
+        <pre>installationAddressSearchText = {{installationAddressSearchText}}</pre>
+        <x-autocomplete data-x-class="form-control"
+                        data-x-name="address"
+                        value="installationAddressSearchText"
+                        data-suggestions="installationAddressSuggestions"
+                        data-choice-selected="updateChoiceInstallationAddress"
+                        x-xxx-ng-model="installationAddressSearchText" />
+    </main>
+</body>
+</html>

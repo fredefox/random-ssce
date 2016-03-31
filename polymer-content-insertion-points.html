@@ -1,0 +1,48 @@
+<!--
+    Inspired by this question on SO:
+
+        http://stackoverflow.com/questions/22458340/polymer-dynamic-template-rendering
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+body {
+    font: large/1.556 "Libertine"
+        , "Palatino"
+        , "Palatino Linotype"
+        , "Book Antiqua"
+        , "Georgia"
+        , "Times New Roman"
+        , sans-serif;
+    word-spacing: 0.1ch;
+}
+        </style>
+        <script src="webcomponentsjs/webcomponents.js" defer></script>
+        <link rel="import" href="polymer/polymer.html"/>
+        <dom-module is="x-dynamic">
+            <template>
+                <h1>dynamic</h1>
+                <section>
+                    <h2>foo</h2>
+                    <content select=".foo"/>
+                </section>
+                <section>
+                    <h2>bar</h2>
+                    <content select=".bar"/>
+                </section>
+            </template>
+        </dom-module>
+        <script defer>
+(function(Polymer) {
+    Polymer({is: "x-dynamic"});
+})(window.Polymer);
+        </script>
+        <body>
+            <x-dynamic>
+                <p class="foo">Content of <tt>foo</tt></p>
+                <p class="bar">Content of <tt>bar</tt></p>
+            </x-dynamic>
+        </body>
+    </head>
+</html>

@@ -1,0 +1,11 @@
+input:not(:focus) {
+    /* the reason the example does not work in Internet Explorer is that IE does
+    not recognize `unset` as a valid value for `background-color`. */
+    background-color: unset;
+    border: 1px solid;
+    border-color: rgba(128, 128, 128, 0.5);
+}
+.input {
+    border: 2px inset;
+    /*border: 1px solid;*/
+}

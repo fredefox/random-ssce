@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script defer src="/bower_components/angular/angular.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body ng-app="MyModule">
+    <main ng-controller="Main">
+        <h4>Bind <code>bar</code> to <code>foo</code></h4>
+        <div foo="bar"></div>
+        <h4>Bind <code>foo</code> to <code>foo</code></h4>
+        <div foo="foo"></div>
+    </main>
+</body>
+</html>

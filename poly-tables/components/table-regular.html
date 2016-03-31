@@ -1,0 +1,33 @@
+<dom-module is="x-table-regular">
+    <template>
+        <h1>Digits of PI</h1>
+        <p>Displayed using regular tables.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Digit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template is="dom-repeat" items="{{items}}">
+                    <tr>
+                        <td>{{index}}</td>
+                        <td>{{item.$}}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+    <script>
+Polymer({
+    is: "x-table-regular",
+    properties: {
+        items: {
+            type: Array,
+            value: Math.PI.toString().split("").map(function(e) {return {$: e}})
+        }
+    }
+});
+    </script>
+</dom-module>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/node_modules/lz-string/libs/lz-string.js"></script>
+    <script>
+(function main(export_) {
+    var message      = "This is my compression test.",
+        compressed   = LZString.compress(message),
+        uncompressed = LZString.decompress(compressed);
+    console.info("Size of sample is: " + message.length);
+    console.info("Size of compressed sample is: " + compressed.length);
+    console.info("Sample is: " + uncompressed);
+    debugger;
+})(this);
+    </script>
+</head>
+<body>
+</body>
+</html>

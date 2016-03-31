@@ -1,0 +1,10 @@
+<!-- Optionally embed scripts before any externally referenced scripts. -->
+<script defer>
+console.info("1st dependant.");
+</script>
+<!-- Referencing external scripts with the `defer`-attribute will ensure
+     that they can be loaded in parallel and only executed after the page is
+     done loading (that is, not block rendering the page). -->
+<script defer src="script.js"></script>
+<!-- Scripts directly embedded after this point will not be guaranteed to
+     execute after the contents of `script.js`. -->

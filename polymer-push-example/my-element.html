@@ -1,0 +1,73 @@
+<dom-module is="my-element">
+    <template>
+        <form on-submit="_addElement">
+            <input id="new-element" name="new-element"></input>
+            <button type="submit">Add</button>
+            <button type="button" on-click="popElement">Remove</button>
+        </form>
+        <ul>
+            <template id="dom-repeat" is="dom-repeat" items="{{items}}">
+                <li>
+                    <button on-click="_removeElement">remove</button>
+                    <button on-click="_reverse">reverse</button>
+                    <span>{{item.$}}</span>
+                </li>
+            </template>
+        </ul>
+    </template>
+    <script>
+(function(Polymer, cache) {
+    Polymer({
+        is: "my-element",
+        properties: {
+            items: {
+                type: Array,
+                value: loadValues()
+            }
+        },
+        observers: ["saveValues(items.*)"],
+        is: 'my-element',
+        _addElement: function(ev) {
+            ev.preventDefault();
+            return this.addElement(this.$["new-element"].value);
+        },
+        _removeElement: function(ev) {
+            this.splice("items", ev.model.index, 1);
+        },
+        popElement: function() {
+            this.$["dom-repeat"].pop("items");
+        },
+        addElement: function(val) {
+            this.push("items", {$: val});
+        },
+        saveValues: function(ev) {
+            if(ev.base.constructor !== Array) return;
+            saveValues(ev.base);
+        },
+        _reverse: function(ev) {
+            var model = ev.model,
+                v = model.get("item.$"),
+                r = v.split("").reverse().join("");
+            model.set("item.$", r);
+        },
+        _idx: function(i) {
+            return i % 2 == 0;
+        },
+        _foo: function() {
+            return "hej";
+        }
+    });
+
+    function saveValues(elements) {
+        var s = JSON.stringify(elements || []);
+        cache.setItem("elements", s);
+    }
+    function loadValues() {
+        var e = cache.getItem("elements");
+        if(!e) return [];
+        var res = JSON.parse(e);
+        return res;
+    }
+})(window.Polymer, window.localStorage);
+    </script>
+</dom-module>

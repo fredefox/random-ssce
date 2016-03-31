@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script defer src="/bower_components/angular/angular.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body ng-app="MyModule">
+    <main ng-controller="Main">
+        <input ng-model="debounce"/>
+        <input ng-model="foo" ng-model-options="{{modelOptions}}"/>
+    </main>
+</body>
+</html>

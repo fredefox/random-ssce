@@ -1,0 +1,14 @@
+<!-- This should sort of be a decorated radio-button When it is
+clicked it should move to a different place in the DOM. However,
+likely this wont be the responsibility of this element, rather the
+user of this element. This element should just emulate a radio-button
+and supply a consistent interface. -->
+<div class="product">
+    <span class="left" ng-class="{true: 'red', false: 'blue'}[product.selected]">Valgt</span>
+    <div class="right">
+        <h4>{{product.name}}</h4>
+        <p>{{product.description}}</p>
+        <p class="price">{{product.price}}</p>
+    </div>
+</div>
+

@@ -1,0 +1,24 @@
+<dom-module is="x-foo">
+    <template>
+        <ol>
+            <template is="dom-repeat" id="repeat" items="{{items}}">
+                <li on-click="_click">{{item.$}}</li>
+            </template>
+        </ol>
+    </template>
+    <script>
+Polymer({
+    is: "x-foo",
+    properties: {
+        items: {
+            type: Array,
+            value: Math.PI.toString().split("").map(function(e) {return {$: e}})
+        }
+    },
+    _click: function(ev) {
+        var wrapped = Polymer.dom(ev);
+        console.info("Polymer.dom: %o -> %o", ev, wrapped);
+    }
+});
+    </script>
+</dom-module>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script defer src="/node_modules/angular/angular.js"></script>
+    <script defer src="/node_modules/angular-animate/angular-animate.js"></script>
+    <script defer src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script defer src="app/app.js"></script>
+    <script defer src="app/services/product.js"></script>
+    <script defer src="app/controllers/relocationform.js"></script>
+    <script defer src="app/directives/relocationform/index.js"></script>
+</head>
+<body ng-app="relocationform">
+    <!-- From a strictly semantic point of view this page should contain:
+        header, nav, main, footer, ...
+    This app will be injected into a page whose responsibility that is.-->
+    <div ui-view></div>
+</body>
+</html>

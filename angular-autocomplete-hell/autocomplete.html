@@ -1,0 +1,49 @@
+<!--
+    I have had to propagate all the attributes that I need to have on
+    the `input`-element. That's quite a bother, I don't know any al-
+    ternative way of doing this.
+    -->
+<!-- TODO: Clean-up styles in this file.
+    I have used inline-styles as well as local style-declarations to acheive
+    a reasonable look-and-feel. Now we should refactor this to behave in a
+    coherent, consistent and portable fashion.
+    The z-index on the `ul` is needed because other elements define a z-index
+    and this dropdown is then hidden.
+    Probable should remove: `width: 100%;` and `class="form-control"`
+-->
+<!--
+    Look into using this:
+
+    [^1]: https://docs.angularjs.org/guide/directive#creating-a-directive-that-wraps-other-elements
+-->
+<style>
+.address-bad {
+    border-color: red;
+}
+.address-good {
+    border-color: green;
+}
+</style>
+<pre>value = {{value}}</pre>
+<input ng-model="value" class="{{xClass}}" name="{{xName}}" placeholder="{{xPlaceholder}}"
+    ng-class="{true: 'address-good', false: 'address-bad'}[foundFullyEvaluatedAddress]" />
+<ul ng-show="displaySuggestions"
+    style="
+        width: 100%;
+        position: absolute;
+        background-color: white;
+        border: 1px solid black;
+        z-index: 3;
+        list-style: none;
+    ">
+    <li ng-repeat="s in suggestions"
+        x-value="{{s.value}}"
+        ng-click="chooseSuggestion(s)"
+        class="form-control"
+        style="
+            border: none;
+            list-style: none;
+        ">
+        {{s.key}}
+    </li>
+</ul>

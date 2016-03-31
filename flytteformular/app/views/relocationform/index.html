@@ -1,0 +1,21 @@
+<!-- This header-thing really probably shouldn't be here. -->
+<header>
+    <nav>
+        <ol>
+            <li><a ui-sref=".userinfo">Personoplysninger</a></li>
+            <li><a ui-sref=".expenditure">Forbrug</a></li>
+            <li><a ui-sref=".product">Elprodukt</a></li>
+            <li><a ui-sref=".summary">Bekræftelse</a></li>
+        </ol>
+    </nav>
+</header>
+<form ng-submit="submit()">
+    <!-- Not certain that `main` semantically makes sense here. -->
+    <main ui-view></main>
+</form>
+<pre>
+$scope.user = {{user}}
+$scope.relocation = {{relocation}}
+$scope.product = {{product}}
+$scope.conditions = {{conditions}}
+</pre>

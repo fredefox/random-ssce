@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- This serves as an example of a good way to combine script-loading
+     with the `defer`/`async` attribute and html-imports. -->
+<html>
+<head>
+    <!-- Import all depedencies. -->
+    <script defer src="first.js"></script>
+    <link rel="import" href="dependency.html"/>
+    <!-- In stead of directly embedding the scripts in the main page, place the
+         scripts in its own html-page. This way it should be ensured that
+         `dependency.html` is loaded before `scripts.html` (and in turn the
+         scripts referenced in `scripts.html`). -->
+    <link rel="import" href="scripts.html"/>
+</head>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+.overflow p {
+    text-overflow: ellipsis;
+    width: 8em;
+    overflow: hidden;
+}
+    </style>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var e = document.querySelector(".overflow");
+    e.addEventListener("click", () => console.info("lol"));
+});
+    </script>
+</head>
+<body>
+    <div class="overflow">
+        <p>hello, this text overflows. And yeah it totally does,
+            like for real I'm so super cereal.</p>
+    </div>
+</body>
+</html>

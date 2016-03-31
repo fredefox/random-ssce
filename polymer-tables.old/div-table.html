@@ -1,0 +1,47 @@
+<dom-module is="div-table">
+</dom-module>
+<style>
+.table {
+display: table;
+}
+.thead {
+display: table-header-group;
+}
+.tr {
+display: table-row;
+}
+.th {
+display: table-cell;
+}
+.tbody {
+display: table-row-group;
+}
+.td {
+display: table-cell;
+}
+</style>
+<dom-module is="employee-tr" attributes="employee">
+    <template>
+        <div class="tr">
+            <div class="td">{{employee.name}}</div>
+            <div class="td">{{employee.title}}</div>
+        </div>
+    </template>
+</dom-module>
+<dom-module is="employee-table" attributes="employees">
+    <template>
+        <div class="table">
+            <div class="thead">
+                <div class="tr">
+                    <div class="th">Name</div>
+                    <div class="th">Title</div>
+                </div>
+            </div>
+            <div class="tbody" is="dom-repeat" items='{{employees}}'>
+                <!--<template is="dom-repeat" items='{{employees}}'>-->
+                    <employee-tr employee='{{item}}'></employee-tr>
+                <!--</template>-->
+            </div>
+        </table>
+    </template>
+</dom-module>

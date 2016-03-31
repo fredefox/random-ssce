@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>console.info(NodeList.constructor);</script>
+    <script defer src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="polymer.html"/>
+    <link rel="import" href="scripts.html"/>
+    <link rel="import" href="components/x-foo.html"/>
+    <link rel="import" href="components/x-title.html"/>
+    <link rel="import" href="components/x-dom-type.html"/>
+    <title>Shady and shadow dom</title>
+</head>
+<body>
+    <h1><x-title></h1>
+    <p>Showcase of shady and shadow dom features.</p>
+    <p>Try switching to <a href="?dom=shadow">shadow</a> or <a href="?dom=shady">shady</a> dom.</p>
+    <x-foo></x-foo>
+</body>
+</html>

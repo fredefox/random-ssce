@@ -1,0 +1,39 @@
+<!--
+    This example *must* be run with a web-server. The reason for this is that
+    it's in violation with the same-origin policy to serve files from the file-
+    system - however weird that sounds.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="webcomponentsjs/webcomponents.js" defer></script>
+        <link rel="import" href="polymer/polymer.html"/>
+        <dom-module is="my-element">
+            <template>
+                <p>Hello <span>{{name}}</span>!</p>
+            </template>
+        </dom-module>
+        <script defer>
+(function(Polymer) {
+    var MyElement = Polymer.Class({
+        is: 'my-element',
+        properties: {name: {value: "World"}}
+    });
+    document.registerElement("my-element", MyElement);
+    var instances = [
+        new MyElement(),
+        Polymer.Base.create("my-element", {name: "Frederik"}),
+        (function() {
+            var i = document.createElement("my-element");
+            i.set("name", "Brian");
+            return i;
+        })()
+    ];
+    instances.forEach(i => document.body.appendChild(i));
+})(window.Polymer);
+        </script>
+        <body>
+            <my-element name="Simon"/>
+        </body>
+    </head>
+</html>

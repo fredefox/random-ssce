@@ -1,0 +1,16 @@
+/* native elements */
+body {
+    background-color: rgb(235, 235, 225);
+    display: flex;
+    justify-content: center;
+}
+main {
+    /*max-width: 40ch;*/
+}
+section {
+    margin-bottom: 1em;
+}
+/* use-case specific */
+.demo {
+    min-height: 2em;
+}

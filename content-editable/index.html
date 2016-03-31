@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="style.css" class="inputs"/>
+    <script>
+function toggleStyle(btn) {
+    var e = document.querySelector("link[rel=stylesheet].inputs");
+    e.disabled = !e.disabled;
+    btn.textContent = e.disabled ? "on" : "off";
+}
+    </script>
+</head>
+<body>
+    <main>
+        <section>
+            Turn <button onclick="toggleStyle(this);">off</button> style-sheet.
+        </section>
+        <section>
+            <pre>A regular input-field</pre>
+            <div class="demo">
+                <input value="hej"/>
+            </div>
+            <pre>A regular paragraph</pre>
+            <div class="demo">
+                <p class="input">hej</p>
+            </div>
+            <pre>A paragraph whit the attribute `contenteditable`</pre>
+            <div class="demo">
+                <p class="input" contenteditable="true">hej</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

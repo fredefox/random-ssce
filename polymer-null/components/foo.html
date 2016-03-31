@@ -1,0 +1,26 @@
+<link rel="import" href="/bower_components/polymer/polymer.html"/>
+<dom-module is="x-foo">
+    <template>
+        <p>Hej, <span>{{foo.name}}</span></p>
+        <ol>
+            <template is="dom-repeat" items="{{bar}}">
+                <li>{{item.$}}</li>
+            </template>
+        </ol>
+    </template>
+    <script>
+Polymer({
+    is: "x-foo",
+    properties: {
+        foo: {
+            type: Object,
+            value: {name: null}
+        },
+        bar: {
+            type: Array,
+            value: []
+        }
+    }
+});
+    </script>
+</dom-module>

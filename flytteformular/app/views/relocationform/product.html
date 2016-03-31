@@ -1,0 +1,90 @@
+<!-- Could we maybe somehow use a template for these sub-pages? -->
+<section class="center">
+    <h2>Vælg et produkt</h2>
+    <p>Abonnement koster 12.5 kr/måned</p>
+    <!-- TODO: Probably use other class-name -->
+    <!-- TODO: Use background color on `span` rather than checkboxes.
+    Also move the checkbox into the selected products container at the
+    top of the page. -->
+    <!-- TODO: Show chosen product and addons closely together on the
+    page. -->
+    <div class="bundled-together">
+        <div ng-repeat="p in products | filter: { selected: true }">
+            <x-product product="p" type="radio"
+                ng-click="toggleSelectProd(p)">
+            </x-product>
+        </div>
+        <!-- TODO: Make another directive for addons
+        products are radio-buttons and addons are checkboxes -->
+        <div ng-repeat="a in addons">
+            <x-product product="a" type="checkbox"></x-product>
+        </div>
+    </div>
+    <!-- TODO: Negate this filter - this implementation is not working -->
+    <div ng-repeat="p in products | filter: { selected: '!' + true }">
+        <x-product product="p" type="radio"
+            ng-click="toggleSelectProd(p)">
+        </x-product>
+    </div>
+    <p>
+        <label>
+            <input type="checkbox" ng-model="conditions.newsletter" />
+            <span>Jeg vil gerne modtage nyt fra Energinord. <a href="#">Læs vikår</a>.</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" ng-model="conditions.eula" />
+            <span>Jeg accepterer <a href="#">Energinords standardvilkår</a>.</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" ng-model="conditions.monthlyInvoice" />
+            <span>Jeg ønsker månedsafregning (kr. 10,- pr. måned).</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" ng-model="conditions.emailInvoices" />
+            <!-- TODO: Text doesn't fit and is not broken across lines.
+            This might not be an issue in "live"-->
+            <span>Tilmeld E-kommunikation og modtag dine regninger og ... <!--opgørelser per E-Mail.--> <a href="#">Læs vilkår</a></span>
+        </label>
+    </p>
+    <div style="float: left;">
+        <!-- TODO: Where should this go? -->
+        <button class="muted" ui-sref="form.expenditure">Tilbage</button>
+    </div>
+    <div style="float: right;">
+        <button class="primary" ui-sref="form.summary">Næste</button>
+    </div>
+</section>
+<aside>
+    <img />
+    <h4>Et produkt</h4>
+    <p>Coffee seasonal, aroma sit cup espresso affogato sweet. Cinnamon
+        ristretto lungo froth blue mountain id extra black espresso. Cup galão,
+        variety at grounds strong and macchiato foam. Cream, cup, frappuccino
+        french press id est aromatic.</p>
+    <img />
+    <h4>Et andet produkt</h4>
+    <p>Fair trade black at pumpkin spice that milk foam. Organic siphon and
+        doppio, lungo, barista white shop espresso shop. Cappuccino mocha,
+        that, extra frappuccino filter shop blue mountain. Carajillo, viennese
+        body, extraction, acerbic, milk steamed barista mazagran robusta.</p>
+    <img />
+    <h4>Et tredje produkt</h4>
+    <p>Sweet decaffeinated, seasonal, froth cappuccino white instant pumpkin
+        spice. That aged fair trade, plunger pot, sugar, siphon, ut skinny
+        crema doppio seasonal. Cortado caffeine white est extra robust java
+        black percolator aged milk. Est coffee, whipped brewed eu, ut beans
+        black caffeine shop extra.</p>
+    <img />
+    <h4>Et fjerde produkt</h4>
+    <p>Aroma, and blue mountain white single shot cup that iced. And robusta siphon,
+        body, single origin, cup, chicory et cup aged latte. Galão, java
+        seasonal medium irish aftertaste plunger pot café au lait a filter.
+        Seasonal instant single origin that, coffee, single origin, roast eu
+        wings steamed redeye. Kopi-luwak, aromatic, sit black and body extra.</p>
+</aside>

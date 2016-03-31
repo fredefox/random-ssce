@@ -1,0 +1,80 @@
+body {
+    max-width: 70em;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #b7bbbe;
+}
+main {
+    background-color: #eeeff1;
+    overflow: hidden;
+}
+section, aside {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 2em;
+    padding-right: 2em;
+    height: 100%;
+}
+section {
+    max-width: 80ch;
+}
+aside {
+    background-color: #4e5359;
+    width: 20%;
+    float: right;
+    color: white;
+    font-size: small;
+}
+.center {
+    /* TODO! This is not working.
+    There is probably an error in the HTML-markup as well.
+    The error probably has to do with how you use:
+        display: [inline-]block;
+    */
+}
+label {
+    display: block;
+    margin-bottom: .5ch;
+}
+input:not([type]),
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="text"] {
+    width: 40ch;
+    line-height: 2em;
+}
+button {
+    height: 2em;
+}
+button.primary {
+}
+button.muted {
+}
+header > nav li {
+    display: inline-block;
+}
+.product .left.red {
+    background-color: #ea4e25;
+}
+.product .left.blue {
+    background-color: #00a4ad;
+}
+.product .left.grey {
+    background-color: #b7bbbe;
+}
+.product .left {
+    width: 4em;
+    height: 100%;
+}
+.product .right, .product .left {
+    vertical-align: middle;
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.ng-invalid {
+    border-color: red;
+}

@@ -1,0 +1,22 @@
+<!--
+    This example *must* be run with a web-server. The reason for this is that
+    it's in violation with the same-origin policy to serve files from the file-
+    system - however weird that sounds.
+
+    This example doesn't work in firefox. It's an issue with the load-order.
+
+    There's also an issue in Chrome. I would have used the `defer` attribute
+    on the main script - but that would oddly break the load-order when The
+    script is located in a seperate file.
+-->
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <script defer src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="/bower_components/polymer/polymer.html" />
+        <link rel="import" href="div-table.html" />
+    </head>
+    <body>
+    </body>
+</html>

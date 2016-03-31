@@ -1,0 +1,44 @@
+<dom-module is="my-element">
+    <template>
+        <ol>
+            <template is="dom-repeat" items="{{items}}">
+                <li><input on-change="_willWork" value="{{item.$::input}}"></input></li>
+            </template>
+        </ol>
+
+        <table>
+            <thead>
+                <th>foo</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <template is="dom-repeat" items="{{items}}">
+                        <td><input on-change="_wontWork" value="{{item.$::input}}"></input></td>
+                    </template>
+                </tr>
+            </tbody>
+        </table>
+        </table>
+    </template>
+    <script>
+Polymer({
+    is: "my-element",
+    properties: {
+        items: {
+            type: Array,
+            value: [{$:0},{$:1}]
+        }
+    },
+    _willWork: function(ev) {
+        console.info("_willWork", ev.model);
+    },
+    _wontWork: function(ev) {
+        console.info("_wontWork", ev.model);
+    }
+});
+setTimeout(function() {
+    var e = document.querySelector("my-element");
+    e.set("items", [{$: 5}, {$: 4}]);
+}, 500);
+    </script>
+</dom-module>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js" defer></script>
+    <link rel="import" href="/bower_components/polymer/polymer.html"/>
+    <link rel="import" href="components/table-regular.html"/>
+    <link rel="import" href="components/table-div.html"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#broken">broken</a></li>
+            <li><a href="#fixed">fixed</a></li>
+        </ul>
+    </nav>
+    <!-- We could decorate `main` to only show the "focused" section -->
+    <main>
+        <section id="broken">
+            <x-table-regular>
+        </section>
+        <section id="fixed">
+            <x-table-div>
+        </section>
+    </main>
+</body>
+</html>

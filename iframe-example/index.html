@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+body {
+    display: flex;
+}
+.block {
+    background-color: khaki;
+    min-width: 2ch;
+    min-height: 2ch;
+}
+    </style>
+    <script defer>
+(function() {
+    var foo = window.foo = "foo";
+    console.info(foo);
+})();
+    </script>
+</head>
+<body>
+    <iframe src="sandbox.html"></iframe>
+    <div class="block"></div>
+</body>
+</html>
