@@ -1,0 +1,16 @@
+{
+  "name": "examples",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "es6-promise": "~3.0.2",
+    "polymer": "~1.2.3",
+    "underscore": "~1.8.3",
+    "jquery": "1.11.3",
+    "jquery-ui": "1.11.4"
+  }
+}
