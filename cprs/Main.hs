@@ -1,6 +1,7 @@
 import System.Environment
-import Data.Char (isDigit, digitToInt)
+import Data.Char (isDigit, digitToInt, intToDigit)
 import Control.Monad ((>=>))
+import Data.Maybe (catMaybes)
 
 main :: IO ()
 main = print $ take 10 cprs
@@ -13,14 +14,26 @@ type Cpr = String
 
 cprs :: [Cpr]
 -- loop through all combinations of 9 digits and calculate the remainder.
-cprs = undefined
+cprs = catMaybes maybeCprs
+
+maybeCprs :: [Maybe Cpr]
+maybeCprs = map fullfillCpr $ possibilities 8
+
+possibilities :: Int -> [String]
+possibilities 0 = digits
+possibilities x  = (++) <$> digits <*> (possibilities . pred $ x)
+
+digits = map (\x -> [intToDigit x]) [0..9]
+
+fullfillCpr :: String -> Maybe Cpr
+fullfillCpr x = fmap ((++) x . (\x -> [x]) . intToDigit) $ maybeLastCprDigit x
 
 maybeLastCprDigit :: String -> Maybe Int
 maybeLastCprDigit = maybeChecksum >=> lastCprDigit
 
 lastCprDigit :: Int -> Maybe Int
 lastCprDigit = maybeGoodEnough . ((-) 11) . (`mod` 11) where
-  maybeGoodEnough 11 = Nothing
+  maybeGoodEnough 10 = Nothing
   maybeGoodEnough x = Just x
 
 maybeChecksum :: String -> Maybe Int
