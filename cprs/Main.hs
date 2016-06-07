@@ -2,12 +2,10 @@ import System.Environment
 import Data.Char (isDigit, digitToInt, intToDigit)
 import Control.Monad ((>=>), forM_)
 import Data.Maybe (mapMaybe)
+import Types.Cpr
 
 main :: IO ()
 main = forM_ cprs putStrLn
-
-{-| A @Cpr@ is a 10-digit long string that follows a specific pattern -}
-type Cpr = String
 
 --instance Enum Cpr where
 
