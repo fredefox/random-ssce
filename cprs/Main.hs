@@ -3,6 +3,7 @@ import Data.Char (isDigit, digitToInt, intToDigit)
 import Control.Monad ((>=>), forM_)
 import Data.Maybe (mapMaybe)
 import Types.Cpr
+import LookupPerson
 
 main :: IO ()
 main = forM_ cprs putStrLn
