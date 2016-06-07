@@ -1,10 +1,10 @@
 import System.Environment
-import Data.Char (isDigit, digitToInt)
-import Control.Monad ((>=>))
+import Data.Char (isDigit, digitToInt, intToDigit)
+import Control.Monad ((>=>), forM_)
+import Data.Maybe (mapMaybe)
 
 main :: IO ()
-main = print $ take 10 cprs
--- main = getArgs >>= parseArgs >>=
+main = forM_ cprs putStrLn
 
 {-| A @Cpr@ is a 10-digit long string that follows a specific pattern -}
 type Cpr = String
@@ -13,14 +13,26 @@ type Cpr = String
 
 cprs :: [Cpr]
 -- loop through all combinations of 9 digits and calculate the remainder.
-cprs = undefined
+cprs = mapMaybe mkCpr candidates
+
+mkCpr :: String -> Maybe Cpr
+mkCpr x = ((x ++) . show) <$> maybeLastCprDigit x
+
+candidates :: [String]
+candidates = go 8 where
+  go 0 = digits
+  go n = (++) <$> digits <*> (go . pred) n
+
+digits :: [String]
+digits = map (\x -> [intToDigit x]) [0..9]
 
 maybeLastCprDigit :: String -> Maybe Int
 maybeLastCprDigit = maybeChecksum >=> lastCprDigit
 
 lastCprDigit :: Int -> Maybe Int
-lastCprDigit = maybeGoodEnough . ((-) 11) . (`mod` 11) where
+lastCprDigit = maybeGoodEnough . (11 -) . (`mod` 11) where
   maybeGoodEnough 11 = Nothing
+  maybeGoodEnough 10 = Nothing
   maybeGoodEnough x = Just x
 
 maybeChecksum :: String -> Maybe Int
@@ -31,7 +43,7 @@ maybeChecksum s
 
 {-| @checksum@ is a partial function. The argument *must* be 9 digits -}
 checksum :: [Int] -> Int
-checksum = sum . map (uncurry (*)) . zip magicNumber
+checksum = sum . zipWith (*) magicNumber
 
 magicNumber :: [Int]
 magicNumber = map digitToInt "432765432"
