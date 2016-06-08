@@ -10,11 +10,11 @@ import Data.Aeson
 type Cpr = String
 
 data Person = Person
-    { adresse :: Address
-    , adresseOgNavneBeskyttelse :: Bool
-    , navn :: String
-    , reklameBeskyttelse :: Bool
-    , telefonnummer :: Maybe String
+    { address :: Address
+    , addressAndNameProtection :: Bool
+    , name :: String
+    , commercialProtection :: Bool
+    , phoneNumber :: Maybe String
     } deriving (Generic, Show)
 
 instance ToJSON Person where
@@ -32,7 +32,7 @@ data Address = Address
   { kvhxCode :: KvhxCode
   , postalCode :: PostalCode
   , cityName :: Maybe String
-  , address :: Maybe String
+  , toAddress :: Maybe String
   , streetName :: Maybe String
   } deriving (Generic, Show)
 
