@@ -17,6 +17,7 @@ import Data.ByteString.Lazy.Char8 (unpack)
 import Data.ByteString.Char8 (pack)
 import Network.HTTP.Types.Status
 import Control.Monad.Trans.Resource (runResourceT)
+import Data.Aeson
 
 data NoPersonError
   = ConnError ConnError
@@ -30,9 +31,13 @@ lookupPerson cpr = do
 toPerson :: Response ByteString -> Either String Person
 toPerson s
   | statusIsSuccessful . responseStatus $ s
-    = Right . Person . unpack . responseBody $ s
+    = decodeToEither. responseBody $ s
   | otherwise
-    = Left . unpack . responseBody $ s
+    = Left . unpack . responseBody $ s where
+      decodeToEither :: ByteString -> Either String Person
+      decodeToEither x = case decode x of
+        Nothing -> fail $ "Response is invalid JSON (" ++ unpack x ++ ")"
+        (Just p) -> Right p
 
 --fetchPerson :: Cpr -> IO (Either String Person)
 fetchPerson mgr cpr = case endpoint [("Cpr", cpr)] of
