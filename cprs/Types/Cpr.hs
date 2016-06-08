@@ -9,6 +9,11 @@ import Data.Aeson
 {-| A @Cpr@ is a 10-digit long string that follows a specific pattern -}
 type Cpr = String
 
+-- TODO: Make ToJSON end FromJSON inverses
+-- Obviously it's silly to have instances of FromJSON and ToJSON that
+-- aren't inverses. The reason I did this was because I didn't know
+-- how to emulate the behaviour of `decode` in `LookupPerson.hs:38`.
+-- A nice solution would be to use a "local" version of decode there.
 data Person = Person
     { address :: Address
     , addressAndNameProtection :: Bool
