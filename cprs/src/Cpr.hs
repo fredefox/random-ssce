@@ -13,6 +13,12 @@ mkCpr :: String -> Maybe Cpr
 mkCpr x = ((x ++) . show) <$> maybeLastCprDigit x
 
 -- Returns a list of 9 characters
+-- TODO: Define a mapping from `Date -> [Cpr]` that finds all valid first
+-- 9 characters of cprs from that date according to the sort of convuluted
+-- ordering rules. The cpr-number contains two characters for the last
+-- to digits of that date, but the last 3 characters also encode
+-- information about the date. Then let this list traverse the cpr-numbers
+-- in that order.
 candidates :: [String]
 candidates = do
   month <- monthsOfTheYear
