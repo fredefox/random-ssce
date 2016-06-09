@@ -10,6 +10,7 @@ import Data.ByteString.Lazy (ByteString)
 import Data.ByteString.Lazy.Char8 (unpack)
 import Data.ByteString.Char8 (pack)
 import Network.HTTP.Types.Status
+import Network.HTTP.Simple (setRequestIgnoreStatus)
 import Control.Monad.Trans.Resource (runResourceT, ResourceT)
 import Data.Aeson
 
@@ -49,10 +50,11 @@ mkQuery xs = ("?" ++) . intercalate "&" . map one $ xs where
     one (a, b) = a ++ "=" ++ b
 
 endpoint :: [Param] -> Maybe Request
-endpoint query = doQuery query . parseUrl $ url where
+endpoint query = doQuery query . parseUrlSafe $ url where
   doQuery :: [Param] -> Maybe Request -> Maybe Request
   doQuery params = fmap (blarg params)
   blarg = setQueryString . map (\(a, b) -> (pack a, Just . pack $ b))
+  parseUrlSafe = (fmap setRequestIgnoreStatus) . parseUrl
 
 url :: String
 url = "https://energinord.dk/umbraco/api/stamdata/VerifyCpr"

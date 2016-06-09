@@ -13,7 +13,7 @@ executable cprs
   build-depends:       base ==4.8.*
                      , HTTP == 4000.3.*
                      , network-uri == 2.6.*
-                     , http-conduit == 2.1.*
+                     , http-conduit >= 2.1.10 && < 2.2
                      , bytestring == 0.10.*
                      , http-types == 0.9.*
                      , resourcet == 1.1.*
