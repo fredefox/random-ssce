@@ -12,6 +12,7 @@ import Network.HTTP.Types.Status
 import Network.HTTP.Simple (setRequestIgnoreStatus)
 import Control.Monad.Trans.Resource (runResourceT, ResourceT)
 import Data.Aeson
+import Control.Arrow ((***))
 
 lookupPerson :: Cpr -> IO (Either String Person)
 lookupPerson cpr = do
@@ -40,8 +41,8 @@ endpoint :: [Param] -> Maybe Request
 endpoint query = doQuery query . parseUrlSafe $ url where
   doQuery :: [Param] -> Maybe Request -> Maybe Request
   doQuery params = fmap (blarg params)
-  blarg = setQueryString . map (\(a, b) -> (pack a, Just . pack $ b))
-  parseUrlSafe = (fmap setRequestIgnoreStatus) . parseUrl
+  blarg = setQueryString . map (pack *** (Just . pack))
+  parseUrlSafe = fmap setRequestIgnoreStatus . parseUrl
 
 url :: String
 url = "https://energinord.dk/umbraco/api/stamdata/VerifyCpr"
