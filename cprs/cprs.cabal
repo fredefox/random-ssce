@@ -10,7 +10,7 @@ cabal-version:       >=1.10
 
 executable cprs
   main-is:             Main.hs
-  build-depends:       base >=4.8 && <4.9
+  build-depends:       base ==4.8.*
                      , HTTP == 4000.3.*
                      , network-uri == 2.6.*
                      , http-conduit == 2.1.*
