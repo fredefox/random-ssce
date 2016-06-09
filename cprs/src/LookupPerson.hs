@@ -27,7 +27,7 @@ toPerson s
     = Left . unpack . responseBody $ s where
       decodeToEither :: ByteString -> Either String Person
       decodeToEither x = case decode x of
-        Nothing -> fail $ "Response is invalid JSON (" ++ unpack x ++ ")"
+        Nothing -> Left $ "Response is invalid JSON (" ++ unpack x ++ ")"
         (Just p) -> Right p
 
 fetchPerson :: Manager -> String -> ResourceT IO (Either String Person)
