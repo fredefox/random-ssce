@@ -1,10 +1,16 @@
 import Cpr
 import Text.Printf
-import System.Environment
 import LookupPerson
+import Control.Monad
 
-main :: IO ()
-main = getArgs >>= mapM_ checkIsCpr
+main :: IO [(String, Status)]
+main = checkAllValidCprs
+
+checkAllValidCprs :: IO [(String, Status)]
+checkAllValidCprs = cprs `forM` \cpr -> do
+    status <- getCprStatus cpr
+    printStatus cpr status
+    return (cpr, status)
 
 data Status = Valid | Invalid | NonExisting | Existing deriving (Show)
 
