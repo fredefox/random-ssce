@@ -6,18 +6,26 @@ import LookupPerson
 main :: IO ()
 main = getArgs >>= mapM_ checkIsCpr
 
+data Status = Valid | Invalid | NonExisting | Existing
+
 checkIsCpr :: String -> IO ()
-checkIsCpr s = printStatus t s where
-    t | validCpr s = "VALID"
-      | otherwise  = "INVALID"
+checkIsCpr cpr = printStatus cpr . toStatus . validCpr $ cpr where
+    toStatus False = Invalid
+    toStatus _     = Valid
 
 checkIsExistingCpr :: String -> IO ()
 checkIsExistingCpr cpr = do
-    s <- lookupPerson cpr
-    let t = case s of
-            (Left _) -> "NOEXIST"
-            _        -> "EXIST"
-    printStatus t cpr
+    status <- fmap toStatus . lookupPerson $ cpr
+    printStatus cpr status where
+        toStatus (Left _) = NonExisting
+        toStatus _        = Existing
 
-printStatus :: PrintfType r => r
-printStatus = printf "%-8s %s\n"
+printStatus :: PrintfType r => String -> Status -> r
+printStatus cpr = printIt . statusToString where
+    printIt status = printf "%-8s %s\n" status cpr
+
+statusToString :: Status -> String
+statusToString Valid       = "VALID"
+statusToString Invalid     = "INVALID"
+statusToString NonExisting = "NOEXIST"
+statusToString Existing    = "EXIST"
