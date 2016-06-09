@@ -6,7 +6,14 @@ import LookupPerson
 main :: IO ()
 main = getArgs >>= mapM_ checkIsCpr
 
-data Status = Valid | Invalid | NonExisting | Existing
+data Status = Valid | Invalid | NonExisting | Existing deriving (Show)
+
+getCprStatus :: String -> IO Status
+getCprStatus cpr = if not $ validCpr cpr
+    then return Invalid
+    else fmap toStatus . lookupPerson $ cpr where
+        toStatus (Left _) = NonExisting
+        toStatus _        = Existing
 
 checkIsCpr :: String -> IO ()
 checkIsCpr cpr = printStatus cpr . toStatus . validCpr $ cpr where
