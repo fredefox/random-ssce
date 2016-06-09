@@ -2,12 +2,9 @@ module Cpr (cprs, validCpr) where
 
 import Data.Char (isDigit, digitToInt, intToDigit)
 import Control.Monad ((>=>))
-import Data.Maybe (mapMaybe, isJust)
+import Data.Maybe (mapMaybe)
 import Types.Cpr
 import Data.Word (Word8)
-
-validCpr :: String -> Bool
-validCpr = isJust . mkCpr
 
 cprs :: [Cpr]
 cprs = mapMaybe mkCpr candidates
@@ -38,6 +35,13 @@ maybeChecksum s
   | length s /= 9         = Nothing
   | not . any isDigit $ s = Nothing
   | otherwise             = Just . checksum . map digitToInt . take 9 $ s
+
+validCpr :: String -> Bool
+validCpr s
+  | length s /= 10 = False
+  | otherwise      = case maybeLastCprDigit . take 9 $ s of
+    Nothing  -> False
+    (Just d) -> last s == intToDigit d
 
 {-| @checksum@ is a partial function. The argument *must* be 9 digits -}
 checksum :: [Int] -> Int
