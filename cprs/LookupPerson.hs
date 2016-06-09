@@ -4,24 +4,17 @@ module LookupPerson where
 import Types.Cpr
 --import Network.HTTP
 --import Network.HTTP.Base
-import Network.URI
 import Data.List
-import Network.Stream (Result, ConnError)
-import Control.Monad
-import Data.Bifunctor
 import Network.HTTP.Conduit
-import Network.BufferType
 import Data.ByteString.Lazy (ByteString)
-import qualified Data.ByteString.Lazy as B
 import Data.ByteString.Lazy.Char8 (unpack)
 import Data.ByteString.Char8 (pack)
 import Network.HTTP.Types.Status
-import Control.Monad.Trans.Resource (runResourceT)
+import Control.Monad.Trans.Resource (runResourceT, ResourceT)
 import Data.Aeson
 
 data NoPersonError
-  = ConnError ConnError
-  | HttpError String
+  = HttpError String
 
 lookupPerson :: Cpr -> IO (Either String Person)
 lookupPerson cpr = do
@@ -39,12 +32,12 @@ toPerson s
         Nothing -> fail $ "Response is invalid JSON (" ++ unpack x ++ ")"
         (Just p) -> Right p
 
---fetchPerson :: Cpr -> IO (Either String Person)
+fetchPerson :: Manager -> String -> ResourceT IO (Either String Person)
 fetchPerson mgr cpr = case endpoint [("Cpr", cpr)] of
   Nothing   -> fail "Malformed request"
   (Just r)  -> toPerson `fmap` httpLbs r mgr
 
---doHttp :: Request -> IO (Response ByteString)
+doHttp :: Request -> IO (Response ByteString)
 doHttp req = newManager tlsManagerSettings >>= httpLbs req
 
 type Param = (String, String)
@@ -61,4 +54,5 @@ endpoint query = doQuery query . parseUrl $ url where
   doQuery params = fmap (blarg params)
   blarg = setQueryString . map (\(a, b) -> (pack a, Just . pack $ b))
 
+url :: String
 url = "https://energinord.dk/umbraco/api/stamdata/VerifyCpr"

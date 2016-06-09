@@ -32,6 +32,7 @@ instance FromJSON Person where
       <*> v .: "Navn"
       <*> v .: "ReklameBeskyttelse"
       <*> v .: "Telefonnummer"
+  parseJSON _ = mempty
 
 data Address = Address
   { kvhxCode :: KvhxCode
@@ -51,6 +52,7 @@ instance FromJSON Address where
       <*> v .: "Supplerendebynavn"
       <*> v .: "TilAdresse"
       <*> v .: "Vejnavn"
+  parseJSON _ = mempty
 
 data KvhxCode = KvhxCode
   { houseNumber :: String
@@ -70,6 +72,7 @@ instance FromJSON KvhxCode where
       <*> v .: "Sal"
       <*> v .: "Side"
       <*> v .: "Vejkode"
+  parseJSON _ = mempty
 
 
 data PostalCode = PostalCode
@@ -84,3 +87,4 @@ instance FromJSON PostalCode where
     = PostalCode
       <$> v .: "PostDistrikt"
       <*> v .: "Postnr"
+  parseJSON _ = mempty

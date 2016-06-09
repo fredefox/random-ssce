@@ -1,11 +1,10 @@
 module Cpr (cprs, validCpr) where
 
-import System.Environment
 import Data.Char (isDigit, digitToInt, intToDigit)
-import Control.Monad ((>=>), forM_)
+import Control.Monad ((>=>))
 import Data.Maybe (mapMaybe, isJust)
 import Types.Cpr
-import LookupPerson
+import Data.Word (Word8)
 
 validCpr :: String -> Bool
 validCpr = isJust . mkCpr
@@ -18,6 +17,7 @@ mkCpr x = ((x ++) . show) <$> maybeLastCprDigit x
 
 candidates :: [String]
 candidates = go 8 where
+  go :: Word8 -> [String]
   go 0 = digits
   go n = (++) <$> digits <*> (go . pred) n
 
